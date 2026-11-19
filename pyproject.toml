@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "labshare"
+dynamic = ["version"]
+description = "Offline, cross-platform LAN messenger for computer labs (Windows and Linux)"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+dependencies = []          # standard library only
+keywords = ["lan", "messaging", "sockets", "offline", "wifi-hotspot", "sqlite"]
+
+[project.scripts]
+labshare = "labshare.cli:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "labshare.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,18 @@
+[Unit]
+Description=LabShare Wi-Fi hotspot and message relay
+Wants=NetworkManager.service
+After=NetworkManager.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/default/labshare
+Environment=PYTHONPATH=/opt/labshare/src
+# The password and token are read from the environment file, so they never show up in `ps`.
+ExecStart=/usr/bin/python3 -m labshare host --hotspot
+Restart=on-failure
+RestartSec=5
+User=root
+
+[Install]
+WantedBy=multi-user.target
